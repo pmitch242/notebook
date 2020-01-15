@@ -1,3 +1,3 @@
-let notesJSON = [];
+let notesData = [];
 
-module.exports = notesJSON;
+module.exports = notesData;
