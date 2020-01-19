@@ -12,6 +12,11 @@ module.exports = function (app) {
         res.sendFile(path.join(__dirname, "../public/assets/css/styles.css"))
     });
 
+    // route to js
+    app.get("/assets/js/index.js", function(req, res){
+        res.sendFile(path.join(__dirname, "../public/assets/js/index.js"))
+    });
+
     // If no matching route is found default to index.html
     app.get("*", function (req, res) {
         res.sendFile(path.join(__dirname, "../public/index.html"));
