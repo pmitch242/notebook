@@ -7,6 +7,7 @@ module.exports = function (app) {
         console.log("in notes html");
         res.sendFile(path.join(__dirname, "../public/notes.html"))
     });
+    
 
     // If no matching route is found default to index.html
     app.get("*", function (req, res) {
