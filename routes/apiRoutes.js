@@ -1,24 +1,38 @@
 const db = require("../db/db");
 
-
 module.exports = function (app){
-    let num = 0;
+    // varible to store id
+    let idNum = 0;
 
     app.get("/api/notes", function(req,res){
         res.json(db);
     });
 
     app.post("/api/notes", function(req, res){
-        num++;
+        idNum++;
         let newNote = req.body;
-        newNote.id = num;
-        console.log(newNote)
+
+        // add id to notes object
+        newNote.id = idNum;
+
+        // push note to db.json
         db.push(newNote);
         res.json(newNote);
     })
 
     app.delete("/api/notes/:id", function(req, res){
         let deleteID = req.params.id;
-        console.log
+
+        // filter through and return db for array that holds id that is loosely equal to deleteID
+        let note = db.filter(note =>{ 
+            return note.id == deleteID;
+        })[0];
+
+        // save index position of note
+        const index = db.indexOf(note);
+
+        // delete note from array
+        db.splice(index, 1);
+        res.end("deleted")
     })
 }
